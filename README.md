@@ -1,1 +1,0 @@
-# LojaInfo2.0
