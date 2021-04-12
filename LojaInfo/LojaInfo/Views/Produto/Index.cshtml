@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LojaInfo.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="animated animatedFadeInUp fadeInUp">
+    <h2>Produtos</h2>
+
+    @if (Session["tipoLogado1"] != null)
+    {
+        <p>
+            @Html.ActionLink("Adicionar Produto", "Create")
+        </p>
+    }
+    <br />
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorUnitario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusProd)
+            </th>
+            @if (Session["tipoLogado1"] != null)
+            {
+                <th></th>
+            }
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodProd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeProd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescProd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorUnitario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusProd)
+                </td>
+
+                @if (Session["tipoLogado1"] != null)
+                {
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.CodProd }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.CodProd }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+            </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+</div>

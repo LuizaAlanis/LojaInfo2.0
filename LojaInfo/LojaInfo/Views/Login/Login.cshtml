@@ -1,0 +1,53 @@
+﻿<style type="text/css">
+    body {
+        background-color: #1D2834;
+    }
+</style>
+@model LojaInfo.Models.Usuario
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="abacaxi">
+    <div class="animated animatedFadeInUp fadeInUp">
+        <div class="caixa">
+            <br />
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+
+                <fieldset style="padding:30px 0; margin:40px 0; color:#fff;">
+                    <legend class="titulos" style="text-align:center; border:none; color:#fff;">LOGIN</legend>
+                    <div>
+                        @Html.LabelFor(m => m.NomeUsuario) @*Criação do titulo usuario*@
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.NomeUsuario, new { htmlAttributes = new { @class = "caixinhasLogin" } })@*Caixa de texto *@
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(m => m.NomeUsuario, "", new { @class = "aviso" }) @*Mensagem de erro *@
+                    </div>
+                    <br />
+                    <div>
+                        @Html.LabelFor(m => m.SenhaUsuario)
+                    </div>
+                    <div>
+                        @Html.PasswordFor(m => m.SenhaUsuario, new { @class = "caixinhasLogin" })
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(m => m.SenhaUsuario, "", new { @class = "aviso" }) @*Mensagem de erro *@
+                    </div>
+                    <br /><br /><br />
+                    <div>
+                        <input type="submit" name="btnEnviar" class="button1" value="Login" />
+                    </div>
+
+                    @* caso opte por usar a TempData (ótima para casos de redirection to action): <h5>@TempData["Message"]</h5> *@
+
+                    <h5 class="aviso">@ViewBag.acessoNegado</h5> @*Caso o usuário insira dados inválidos *@
+                </fieldset>
+
+            }
+        </div>
+
+    </div>
+</div>

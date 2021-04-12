@@ -1,0 +1,72 @@
+﻿@model IEnumerable<LojaInfo.Models.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="animated animatedFadeInUp fadeInUp">
+    <h2>Clientes</h2>
+
+
+    <p>
+        @if (Session["tipoLogado1"] != null)
+        {
+            @Html.ActionLink("Adicionar cliente", "Create") 
+        }
+            @Html.ActionLink("Pesquisar cliente", "BuscaCliente")
+    </p>
+    
+    <br />
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodCli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelCli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailCli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusCli)
+            </th>
+            @if (Session["tipoLogado1"] != null)
+            {
+                <th></th>
+            }
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodCli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeCli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelCli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailCli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusCli)
+                </td>
+                @if (Session["tipoLogado1"] != null)
+                {
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.CodCli }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.CodCli }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>

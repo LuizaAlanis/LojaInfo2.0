@@ -1,0 +1,61 @@
+﻿@model LojaInfo.Models.Funcionario
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="animated animatedFadeInUp fadeInUp">
+    <h2>Cadastar</h2>
+    <br /><br /><br /><br /><br />
+    <div class="abacaxi1">
+        <div class="margem" style="width:500px">
+            <br /><br />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="abacaxi1">
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NomeFunc, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NomeFunc, new { htmlAttributes = new { @class = "caixinhas", placeholder = "Nome do funcionário" } }) <br />
+                                @Html.ValidationMessageFor(model => model.NomeFunc, "", new { @class = "aviso" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TelFunc, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TelFunc, new { htmlAttributes = new { @class = "caixinhas", placeholder = "Exemplo: 0000000000" } }) <br />
+                                @Html.ValidationMessageFor(model => model.TelFunc, "", new { @class = "aviso" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StatusFunc, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.StatusFunc, new { htmlAttributes = new { @class = "caixinhas", placeholder = "Exemplo: Ativo" } }) <br />
+                                @Html.ValidationMessageFor(model => model.StatusFunc, "", new { @class = "aviso" })
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Cadastrar" class="button1" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Voltar", "Index")
+            </div>
+            <div>
+                @ViewBag.msg
+            </div>
+        </div>
+    </div>
+</div>

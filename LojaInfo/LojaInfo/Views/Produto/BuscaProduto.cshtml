@@ -1,0 +1,22 @@
+﻿@model LojaInfo.Models.Produto
+
+@{
+    ViewBag.Title = "Buscar";
+}
+
+<h2>Buscar Produto</h2>
+
+@using (Html.BeginForm("BuscaProduto", "Produto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+
+    <div class="editor-field">
+        @Html.EditorFor(m => m.NomeProd)
+    </div>
+    <br />
+    <input type="submit" value="Buscar" />
+}
+<br />
+@Html.Raw(ViewBag.GridViewString)
+<br />
+@Html.ActionLink("Voltar", "Index") 

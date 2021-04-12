@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LojaInfo.Models.Funcionario>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="animated animatedFadeInUp fadeInUp">
+    <h2>Funcionarios</h2>
+
+
+    <p>
+        @Html.ActionLink("Pesquisar Funcionario", "BuscaFuncionario") &nbsp;&nbsp;&nbsp;
+        @if (Session["tipoLogado1"] != null)
+        {
+            @Html.ActionLink("Adicionar Funcionario", "Create")
+        }
+    </p>
+    <br />
+    <div class="margem">
+        <table class="table borderless">
+            <tr class="trCor">
+                <th>
+                    @Html.DisplayNameFor(model => model.CodFunc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeFunc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TelFunc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StatusFunc)
+                </th>
+                @if (Session["tipoLogado1"] != null)
+                {
+                    <th></th>
+                }
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodFunc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeFunc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TelFunc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusFunc)
+                    </td>
+                    @if (Session["tipoLogado1"] != null)
+                    {
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.CodFunc }) &nbsp;&nbsp;&nbsp;
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.CodFunc }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+                </td>
+                    }
+                </tr>
+            }
+
+        </table>
+    </div>
+    
+</div>

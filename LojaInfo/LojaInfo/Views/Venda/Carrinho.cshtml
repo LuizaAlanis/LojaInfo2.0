@@ -1,0 +1,95 @@
+﻿@model IEnumerable<LojaInfo.Models.Venda>
+
+@{
+    ViewBag.Title = "Carrinho";
+}
+
+<h2>Sobre a compra</h2>
+
+@foreach (var item in Model.Take(1))
+{
+    <table class="table table-bordered">
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.CodVenda)</td>
+            <td>@Html.DisplayFor(modelItem => item.CodVenda)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DataVenda)</td>
+            <td>@Html.DisplayFor(modelItem => item.DataVenda)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.FormaPagamento)</td>
+            <td> @Html.DisplayFor(modelItem => item.FormaPagamento)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.StatusVenda)</td>
+            <td>@Html.DisplayFor(modelItem => item.StatusVenda)</td>
+            <td>@Html.ActionLink("Editar status", "EditStatus", new { id = item.CodVenda })</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.NomeFunc)</td>
+            <td>@Html.DisplayFor(modelItem => item.NomeFunc)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.NomeCli)</td>
+            <td>@Html.DisplayFor(modelItem => item.NomeCli)</td>
+            <td></td>
+        </tr>
+    </table>
+}
+<br />
+<h2>Carrinho</h2>
+<p>
+    @Html.ActionLink("AdicionarItem", "CreateItens")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorUnitario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subtotal)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeProd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorUnitario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subtotal)
+            </td>
+            <td>
+                @Html.ActionLink("Remover item", "DeleteItem", new { id = item.CodVenda , id1 = item.CodProd }, new { onclick = "return confirm('Deseja realmente abandonar o produto?');" })
+            </td>
+        </tr>
+    }
+    <tr>
+        @foreach (var item in Model.Take(1))
+        {
+            <td colspan="2"></td>
+            <td><b>@Html.DisplayNameFor(model => model.Total)</b></td>
+            <td><b>@ViewBag.total</b></td>
+            <td></td>
+        }
+    </tr>
+</table>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LojaInfo.Models.Venda>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Vendas</h2>
+<p>
+    @Html.ActionLink("Nova venda", "Create") |
+    @Html.ActionLink("Vendas Arquivadas", "VendasArquivadas") 
+
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodVenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataVenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeFunc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCli)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusVenda)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CodVenda)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DataVenda)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NomeFunc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NomeCli)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StatusVenda)
+    </td>
+    <td>
+        @Html.ActionLink("Carrinho", "Carrinho", new { id = item.CodVenda }) |
+        @Html.ActionLink("Arquivar", "Arquivar", new { id = item.CodVenda })
+    </td>
+</tr>
+}
+
+</table>
